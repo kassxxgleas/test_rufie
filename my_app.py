@@ -1,48 +1,43 @@
-# код основної програми та першого екрану
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import *
-from instr import *
+from PyQt5.QtCore import Qt, QTimer, QTime, QLocale
+from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont
+from PyQt5.QtWidgets import*
+
+from instructions import *
 from second_win import *
 
-class Main_win (QWidget):
+#вікно, в якому розташовується привітання  
+class MainWin(QWidget):
     def __init__(self):
-        super().__init__
-        self.initUi()
-        #self.connects()
-        self.setAppear()
-        #self.show()
+        super().__init__()
+        self.initUI()
+        self.connects()
+        self.set_appear()
+        self.show()
 
-    def initUi(self):
-        self.button_next = QPushButton(txt_next,self)
-        self.hello_text = QLabel(text_hello)
-        self.intr = QLabel(txt_instructions)
-        self.layout_1 = QVBoxLayout()
-        self.layout_1.addWidget(self.hello_text, alignment=Qt.AlignLeft)
-        self.layout_1.addWidget(self.intr, alignment=Qt.AlignLeft)
-        self.layout_1.addWidget(self.button_next,alignment=Qt.AlignCenter)       
-        self.setLayout(self.layout_1)
+    #створює графічні елементи
+    def initUI(self):
+        self.btn_next = QPushButton(txt_next, self)
+        self.hello_text = QLabel(txt_hello)
+        self.instruction = QLabel(txt_instruction)
+        self.layout_line = QVBoxLayout()
+        self.layout_line.addWidget(self.hello_text, alignment = Qt.AlignLeft)
+        self.layout_line.addWidget(self.instruction, alignment = Qt.AlignLeft) 
+        self.layout_line.addWidget(self.btn_next, alignment = Qt.AlignCenter)          
+        self.setLayout(self.layout_line)
 
-    def setAppear(self):
-        self.setWindowTitle(txt_title)
-        self.resize(win_width, win_height)
+    def next_click(self):
+        self.tw = TestWin()
+        self.hide()
 
     def connects(self):
-        self.button_next.clicked.connect(self.next_click)
-        
-    def next_click(self):
-        self.hide()
-        #self.second_win = Test_Win()
+        self.btn_next.clicked.connect(self.next_click)
 
-    
+    #встановлює, як виглядатиме вікно (напис, розмір, місце)
+    def set_appear(self):
+        self.setWindowTitle(txt_title)
+        self.resize(win_width, win_height)
+        self.move(win_x, win_y)
 
-
-
-
-
-
-
-
-
-        app = QApplication([])
-        window = Main_win()
-        app.exec()
+app = QApplication([])
+mw = MainWin()
+app.exec_()
