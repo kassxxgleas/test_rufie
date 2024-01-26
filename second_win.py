@@ -1,4 +1,3 @@
-# напиши тут код для другого екрана програми
 from PyQt5.QtCore import Qt, QTimer, QTime, QLocale
 from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont # перевірка типів значень, що вводяться
 from PyQt5.QtWidgets import*
@@ -157,5 +156,6 @@ class TestWin(QWidget):
 
     def next_click(self):
         self.hide()
-        #self.fw = FinalWin()
-        
+        self.prs = Person(self.line_name.text, int(self.line_age.text()))
+        self.exp = Experiment(self.prs, self.line_test1.text(), self.line_test2.text(), self.line_test2.text())
+        self.fw = FinalWin(self.exp)

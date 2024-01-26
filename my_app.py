@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt, QTimer, QTime, QLocale
-from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont
+from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont # перевірка типів значень, що вводяться
 from PyQt5.QtWidgets import*
 
 from instructions import *
